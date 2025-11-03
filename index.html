@@ -1,10 +1,219 @@
-<section id="booking" style="padding:28px 0;">
-  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;background:#0b1224;border:1px solid #1f2a40;border-radius:16px;padding:18px;">
-    <div>
-      <h3 style="margin:0 0 6px;">Book a Ride (Temporary Portal)</h3>
-      <p style="margin:0;color:#a3b3c8;">Fast, simple scheduling while the new travylway.com goes live.</p>
-    </div>
-    <a href="https://travylway.setmore.com/" target="_blank" rel="noopener" style="background:#38bdf8;color:#001827;padding:12px 18px;border-radius:12px;font-weight:700;white-space:nowrap;">Open Setmore</a>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travylway — Airport rides, the web way</title>
+  <meta name="description" content="Airport rides to and from Denver International Airport (DEN) and beyond. Simple booking, transparent pricing, no app required." />
+  <meta property="og:title" content="Travylway — Airport rides, the web way" />
+  <meta property="og:description" content="Airport rides to and from Denver International Airport (DEN) and beyond. Simple booking, transparent pricing, no app required." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bpryzes2084.github.io/" />
+  <meta name="theme-color" content="#111827" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cpath fill='%23000' d='M0 0h128v128H0z'/%3E%3Cpath fill='%23fff' d='M24 88l40-64 40 64H24z'/%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg:#0b0f19;--ink:#f9fafb;--muted:#cbd5e1;--accent:#38bdf8;--card:#111827;--line:#1f2937;
+      --maxw:1280px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
+      background:linear-gradient(180deg,#0b0f19, #0b0f19 60%, #0f172a);
+      color:var(--ink);
+      font-size:18px;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:32px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:0.3px}
+    .logo-mark{width:28px;height:28px;border:2px solid var(--ink);border-radius:8px;display:grid;place-items:center}
+    .logo-mark span{width:14px;height:14px;border-bottom:2px solid var(--ink);border-right:2px solid var(--ink);transform:rotate(45deg);}
+    .cta{background:var(--accent);color:#001827;padding:16px 22px;border-radius:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font-size:18px}
+    .cta:hover{filter:brightness(1.08)}
+    nav .pill{display:inline-block;padding:8px 12px;border-radius:999px;border:1px dashed #334155;color:#93a3b8;font-size:14px;margin-left:6px}
+    .hero{
+      display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+      padding:72px 0;border-bottom:1px solid var(--line)
+    }
+    .hero h1{font-size:clamp(36px,5vw,64px);line-height:1.02;margin:0 0 16px}
+    .hero p{margin:0 0 22px;color:var(--muted);font-size:clamp(18px,2vw,22px)}
+    .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .badge{border:1px solid var(--line);background:rgba(255,255,255,0.03);padding:9px 12px;border-radius:999px;color:#a3b3c8;font-size:14px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+    .grid{display:grid;gap:16px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .feature h3{margin:10px 0 8px}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #334155;color:#93a3b8;font-size:12px}
+    .footer{padding:40px 0;color:#93a3b8;font-size:14px}
+    .hero-img{background:radial-gradient(1000px 400px at 40% -20%, rgba(56,189,248,.18), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border:1px solid var(--line);border-radius:22px;padding:20px;}
+    .hero-img .screen{aspect-ratio:16/9;background:linear-gradient(135deg,#0b1224,#0b162e);border:1px solid #1f2a40;border-radius:14px;display:grid;place-items:center;color:#a7c7ff}
+    .kpis{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px}
+    .kpis .card{flex:1;min-width:240px;text-align:center}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      header{flex-wrap:wrap}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+    /* full-bleed helper for sections */
+    .bleed{width:100vw;margin-left:calc(50% - 50vw)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-label="Travylway">
+        <div class="logo-mark" aria-hidden="true"><span></span></div>
+        <span>Travylway</span>
+      </div>
+      <nav>
+        <a class="pill" href="#how">How it works</a>
+        <a class="pill" href="#coverage">Coverage</a>
+        <a class="pill" href="#faq">FAQ</a>
+        <a class="pill" href="#booking">Booking</a>
+      </nav>
+      <a class="cta" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Book a ride</a>
+    </header>
   </div>
-</section>
+
+  <!-- Full-bleed Temporary Booking Portal Section -->
+  <section class="bleed" style="background:
+      radial-gradient(1200px 500px at 30% -20%, rgba(56,189,248,.20), transparent 60%),
+      #0b1224; border-top:1px solid #1f2a40;border-bottom:1px solid #1f2a40;">
+    <div class="wrap" style="padding:40px 32px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px">
+        <div>
+          <div class="pill" style="font-size:14px">Temporary Booking Portal</div>
+          <h2 style="margin:10px 0 8px;font-size:clamp(28px,3.8vw,48px);line-height:1.05;">
+            Booking while we ship the new Travylway.com
+          </h2>
+          <p class="muted" style="font-size:clamp(16px,1.6vw,20px);max-width:60ch">
+            We’ve migrated off AWS after repeated outages (since Oct 20, 2025). While we finish the new build,
+            use our Setmore portal to lock your ride fast.
+          </p>
+        </div>
+        <a class="cta" href="https://travylway.setmore.com/" target="_blank" rel="noopener" style="font-size:20px;">
+          Open Booking Portal
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="hero" id="home">
+      <div>
+        <div class="pill">Website-only platform · No app needed</div>
+        <h1>Airport rides, minus the chaos.</h1>
+        <p>Point A to Point B, zero drama. Book online, lock it in, and we’ll get you to <strong>DEN</strong> or back — reliably. While we finish our new build, booking is handled via Setmore.</p>
+        <div>
+          <a class="cta" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Book now</a>
+        </div>
+        <div class="badge-row">
+          <span class="badge">Cloudflare-secured</span>
+          <span class="badge">Transparent pricing</span>
+          <span class="badge">Professional drivers</span>
+        </div>
+      </div>
+      <div class="hero-img">
+        <div class="screen">
+          <div>
+            <div style="font-weight:700;font-size:20px;margin-bottom:6px;">DEN ⇄ Your Address</div>
+            <div class="muted" style="font-size:16px;">Book in under 60 seconds. Confirmation to your inbox.</div>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="card"><div class="muted">Primary hub</div><div style="font-size:24px;font-weight:700;">Denver Intl. (DEN)</div></div>
+          <div class="card"><div class="muted">Support</div><div style="font-size:24px;font-weight:700;">Web-first</div></div>
+          <div class="card"><div class="muted">Status</div><div style="font-size:24px;font-weight:700;">New site rolling out</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" style="padding:40px 0;">
+      <div class="grid grid-3">
+        <div class="card feature">
+          <div class="pill">01</div>
+          <h3>Pick your trip</h3>
+          <p class="muted">Choose pickup, dropoff, date, and time. Add flight number if you’ve got one.</p>
+        </div>
+        <div class="card feature">
+          <div class="pill">02</div>
+          <h3>Secure the booking</h3>
+          <p class="muted">Quick confirmation via Setmore while we finalize the new portal.</p>
+        </div>
+        <div class="card feature">
+          <div class="pill">03</div>
+          <h3>Go time</h3>
+          <p class="muted">Driver arrives, bags in, wheels up. Point A → Point B. Done.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="coverage" style="padding:10px 0 40px;">
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Coverage</h3>
+          <p class="muted">Focused on the Denver metro and Front Range. Expanding soon. International ambitions in motion for 2026.</p>
+        </div>
+        <div class="card">
+          <h3>What we’re not</h3>
+          <p class="muted">No surge bait. No mystery fees. All vehicles have four doors, four tires, brakes, accelerator, steering wheel, windows, and windshield wipers — the goal is getting you there, not flexing the badge.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Embedded Setmore Booking Panel -->
+    <section id="booking" style="padding:40px 0;">
+      <div class="card" style="padding:0;overflow:hidden;border-radius:18px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 18px 0 18px">
+          <h3 style="margin:0;font-size:24px;">Book a Ride (Temporary Portal)</h3>
+          <a class="pill" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Open in new tab</a>
+        </div>
+        <iframe src="https://travylway.setmore.com" title="Travylway Booking"
+          style="width:100%;height:78vh;border:0;display:block;background:#0b1224;border-top:1px solid #1f2a40;">
+        </iframe>
+      </div>
+    </section>
+
+    <section id="faq" style="padding:10px 0 40px;">
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Is pricing dynamic?</h3>
+          <p class="muted">Pricing is calculated at booking time. During our migration, Setmore handles the scheduling layer.</p>
+        </div>
+        <div class="card">
+          <h3>How do I contact support?</h3>
+          <p class="muted">Use the notes field during booking for special requests. A dedicated support channel will launch with the new portal.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="grid grid-2">
+        <div>
+          <div class="logo" aria-label="Travylway">
+            <div class="logo-mark" aria-hidden="true"><span></span></div>
+            <span>Travylway</span>
+          </div>
+          <p class="muted" style="margin-top:8px">Airport rides, the web way.</p>
+        </div>
+        <div style="text-align:right">
+          <a class="pill" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Book a ride</a>
+        </div>
+      </div>
+      <div class="muted" style="margin-top:16px">© <span id="y"></span> Travylway. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
 
