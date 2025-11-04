@@ -1,233 +1,212 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Travylway — Airport rides, the web way</title>
-  <meta name="description" content="Airport rides to and from Denver International Airport. Simple booking, transparent pricing, no app required." />
-  <meta property="og:title" content="Travylway — Airport rides, the web way" />
-  <meta property="og:description" content="Airport rides to and from Denver International Airport (DEN) and beyond. Simple booking, transparent pricing, no app required." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bpryzes2084.github.io/" />
-  <meta name="theme-color" content="#111827" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cpath fill='%23000' d='M0 0h128v128H0z'/%3E%3Cpath fill='%23fff' d='M24 88l40-64 40 64H24z'/%3E%3C/svg%3E" />
+  <title>Travylway — Global Airport Transfers</title>
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23000'/%3E%3Ctext x='50%' y='56%' font-size='38' text-anchor='middle' fill='%23D4AF37' font-family='Segoe UI, Roboto, Arial, sans-serif'%3ET%3C/text%3E%3C/svg%3E">
   <style>
     :root{
-      --bg:#0b0f19;--ink:#f9fafb;--muted:#cbd5e1;--accent:#38bdf8;--card:#111827;--line:#1f2937;
-      --maxw:1280px;
+      --bg:#000000; --fg:#ffffff; --muted:#A9B0BA;
+      --card:#0b0b0b; --stroke:#1e1e1e;
+      --gold:#D4AF37; --gold-600:#B08D2B; --gold-300:#E6C56E;
+      --accent:var(--gold);
     }
+
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif;
-      background:linear-gradient(180deg,#0b0f19, #0b0f19 60%, #0f172a);
-      color:var(--ink);
-      font-size:18px;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:32px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:0.3px}
-    .logo-mark{width:28px;height:28px;border:2px solid var(--ink);border-radius:8px;display:grid;place-items:center}
-    .logo-mark span{width:14px;height:14px;border-bottom:2px solid var(--ink);border-right:2px solid var(--ink);transform:rotate(45deg);}
-    .cta{background:var(--accent);color:#001827;padding:16px 22px;border-radius:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font-size:18px}
-    .cta:hover{filter:brightness(1.08)}
-    nav .pill{display:inline-block;padding:8px 12px;border-radius:999px;border:1px dashed #334155;color:#93a3b8;font-size:14px;margin-left:6px}
-    .hero{
-      display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
-      padding:72px 0;border-bottom:1px solid var(--line)
-    }
-    .hero h1{font-size:clamp(36px,5vw,64px);line-height:1.02;margin:0 0 16px}
-    .hero p{margin:0 0 22px;color:var(--muted);font-size:clamp(18px,2vw,22px)}
-    .badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .badge{border:1px solid var(--line);background:rgba(255,255,255,0.03);padding:9px 12px;border-radius:999px;color:#a3b3c8;font-size:14px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
-    .grid{display:grid;gap:16px}
-    .grid-3{grid-template-columns:repeat(3,1fr)}
-    .grid-2{grid-template-columns:repeat(2,1fr)}
-    .feature h3{margin:10px 0 8px}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    h1,h2,h3{margin:0}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px}
     .muted{color:var(--muted)}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #334155;color:#93a3b8;font-size:12px}
-    .footer{padding:40px 0;color:#93a3b8;font-size:14px}
-    .hero-img{background:radial-gradient(1000px 400px at 40% -20%, rgba(56,189,248,.18), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));border:1px solid var(--line);border-radius:22px;padding:20px;}
-    .hero-img .screen{aspect-ratio:16/9;background:linear-gradient(135deg,#0b1224,#0b162e);border:1px solid #1f2a40;border-radius:14px;display:grid;place-items:center;color:#a7c7ff}
-    .kpis{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px}
-    .kpis .card{flex:1;min-width:240px;text-align:center}
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      header{flex-wrap:wrap}
-      .grid-3{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
+
+    /* Top announcement */
+    .topbar{
+      position:sticky; top:0; z-index:1000;
+      width:100%; background:linear-gradient(180deg,#0a0a0a,#000);
+      border-bottom:1px solid var(--gold-600); color:var(--fg)
     }
-    /* full-bleed helper for sections */
-    .bleed{width:100vw;margin-left:calc(50% - 50vw)}
+    .topbar .inner{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .topbar .msg{display:flex;gap:10px;align-items:center;font-weight:600}
+    .topbar .dot{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+    .btn,.btn-ghost{
+      display:inline-block;padding:8px 14px;border-radius:12px;font-weight:700;text-decoration:none
+    }
+    .btn{
+      background:linear-gradient(180deg,var(--gold-300),var(--gold));color:#1a1a1a;border:1px solid var(--gold-300)
+    }
+    .btn:hover{background:linear-gradient(180deg,var(--gold),var(--gold-600))}
+    .btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--gold)}
+    .btn-ghost:hover{background:rgba(212,175,55,.08)}
+
+    /* Header / nav */
+    header{background:linear-gradient(180deg,#050505,#000);border-bottom:1px solid var(--stroke)}
+    .header-row{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
+    nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none}
+    nav a:hover{color:var(--gold)}
+    .btn-header{padding:8px 12px} /* compact header button */
+
+    /* Blocks/grid */
+    .site-grid{display:grid;gap:20px;grid-template-columns:1fr}
+    @media (min-width:980px){.site-grid{grid-template-columns:1fr 1fr}}
+    .block{
+      background:var(--card);border:1px solid var(--stroke);border-radius:16px;
+      padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    .block-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .block-head h2{font-size:1.1rem;position:relative;padding-bottom:6px}
+    .block-head h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:2px;background:var(--gold)}
+    .block-link{color:var(--gold);text-decoration:none;font-weight:600}
+    .block-link:hover{text-decoration:underline}
+
+    /* Cards & table */
+    .cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{border:1px solid var(--stroke);border-radius:12px;padding:12px}
+    .badge{display:inline-block;padding:2px 10px;border-radius:999px;background:#111;color:var(--gold);border:1px solid var(--gold-600);font-size:.8rem}
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{border-bottom:1px solid var(--stroke);padding:10px 8px;text-align:left}
+    .table th{color:var(--gold);border-bottom:1px solid var(--gold-600)}
+
+    /* Footer */
+    footer{margin-top:40px;padding:16px;text-align:center;color:var(--muted);border-top:1px solid var(--stroke)}
+
+    /* A11y */
+    :focus-visible{outline:2px solid var(--gold-300);outline-offset:2px;border-radius:8px}
+    ::selection{background:rgba(212,175,55,.35);color:#000}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo" aria-label="Travylway">
-        <div class="logo-mark" aria-hidden="true"><span></span></div>
-        <span>Travylway</span>
-      </div>
-      <nav>
-        <a class="pill" href="#how">How it works</a>
-        <a class="pill" href="#coverage">Coverage</a>
-        <a class="pill" href="#faq">FAQ</a>
-        <a class="pill" href="#booking">Booking</a>
-      </nav>
-      <a class="cta" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Book a ride</a>
-    </header>
-  </div>
-
-  <!-- Full-bleed Temporary Booking Portal Section -->
-  <section class="bleed" style="background:
-      radial-gradient(1200px 500px at 30% -20%, rgba(56,189,248,.20), transparent 60%),
-      #0b1224; border-top:1px solid #1f2a40;border-bottom:1px solid #1f2a40;">
-    <div class="wrap" style="padding:40px 32px;">
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px">
+  <!-- Top announcement -->
+  <div class="topbar" role="region" aria-label="Site announcement">
+    <div class="wrap inner">
+      <div class="msg">
+        <span class="dot" aria-hidden="true"></span>
         <div>
-          <div class="pill" style="font-size:14px">Temporary Booking Portal</div>
-          <h2 style="margin:10px 0 8px;font-size:clamp(28px,3.8vw,48px);line-height:1.05;">
-            Creating the new Travylway.com
-          </h2>
-          <p class="muted" style="font-size:clamp(16px,1.6vw,20px);max-width:60ch">
-            Travylway has migrated off Amazon Web Services effective 11/2/2025 after partneting with AWS on 8/20/2025.  Following repeated outages since October 20, 2025 while these outages did not directly impact Travylway LLC operations, the company made the proactive decision to prevent any future disruptions to service reliability.
-Travylway is committed to maintaining the highest standards of availability and performance for customers. Rather than waiting for potential issues to affect the platform, the company is taking action now to ensure uninterrupted service.
-While the new infrastructure build is being completed, customers can continue to book rides quickly and easily through Travylway's Setmore portal at https://travylway.setmore.com.
-Thank you for your patience during this transition. Travylway remains dedicated to providing reliable, secure travel services you can count on. Once development of new website is completed this site will be pointed to travylway.com.  This proof of AWS outages can be seen by going to Downdetector.com, type in AWS in the search bar.
+          <div style="font-size:0.95rem"><span style="color:var(--gold)">Creating the new travylway.com</span> — rebuild in progress.</div>
+          <div class="muted" style="font-size:0.9rem">Temporary site is live while we roll out regions, driver portal, and flight tracking.</div>
         </div>
-        <a class="cta" href="https://travylway.setmore.com/" target="_blank" rel="noopener" style="font-size:20px;">
-          Open Booking Portal
-        </a>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="https://travylway.setmore.com" target="_blank" rel="noopener">Book a Ride</a>
+        <a class="btn-ghost" href="/" rel="noopener">Current Build</a>
       </div>
     </div>
-  </section>
-
-  <div class="wrap">
-    <section class="hero" id="home">
-      <div>
-        <div class="pill">Website-only platform · No app needed</div>
-        <h1>Airport rides, minus the chaos.</h1>
-        <p>Point A to Point B, zero drama. Book online, lock it in, and we’ll get you to <strong>DEN</strong> or back — reliably. While we finish our new build, booking is handled via Setmore.</p>
-        <div>
-          <a class="cta" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Book now</a>
-        </div>
-        <div class="badge-row">
-          <span class="badge">Cloudflare-secured</span>
-          <span class="badge">Transparent pricing</span>
-          <span class="badge">Professional drivers</span>
-        </div>
-      </div>
-      <div class="hero-img">
-        <div class="screen">
-          <div>
-            <div style="font-weight:700;font-size:20px;margin-bottom:6px;">Denver International Airport ⇄ Your Address</div>
-            <div class="muted" style="font-size:16px;">Book online 24/7/365 - Availability limited during Holidays. Confirmation to your inbox.</div>
-          </div>
-        </div>
-        <div class="kpis">
-          <div class="card"><div class="muted">Primary hub</div><div style="font-size:24px;font-weight:700;">Denver Internatioanl Airport </div></div>
-          <div class="card"><div class="muted">Support</div><div style="font-size:24px;font-weight:700;"> Chat with us anytime via
-  <a href="https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:600;">
-    Live Chat
-  </a>,
-  or leave a note in your Setmore booking.
-</p> </div></div>
-          <div class="card"><div class="muted">Status</div><div style="font-size:24px;font-weight:700;"> New site is currently under development </div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" style="padding:40px 0;">
-      <div class="grid grid-3">
-        <div class="card feature">
-          <div class="pill">01</div>
-          <h3>Pick your trip</h3>
-          <p class="muted">Choose pickup, dropoff, date, select pickup time, add flight number for tracking purposes </p>
-        </div>
-        <div class="card feature">
-          <div class="pill">02</div>
-          <h3>Secure the booking</h3>
-          <p class="muted">Your booking is confirmed in seconds via Setmore during this migration/upgrade phase.</p>
-        </div>
-        <div class="card feature">
-          <div class="pill">03</div>
-          <h3>Go time</h3>
-          <p class="muted">Driver arrives, bags in, wheels up. Point A → Point B. Done.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="coverage" style="padding:10px 0 40px;">
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Coverage</h3>
-          <p class="muted"> Currently focused on the Denver Metro area only! Plans for expanding Worldwide in 2026. 
-        </div>
-        <div class="card">
-          <h3>What we’re not</h3>
-          <p class="muted">No surge bait. No mystery fees. All vehicles have four doors, four tires, brakes, accelerator, steering wheel, windows, and windshield wipers — the goal is getting you there </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Embedded Setmore Booking Panel -->
-    <section id="booking" style="padding:40px 0;">
-      <div class="card" style="padding:0;overflow:hidden;border-radius:18px">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 18px 0 18px">
-          <h3 style="margin:0;font-size:24px;">Book a Ride (Temporary Portal)</h3>
-          <a class="pill" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Open in new tab</a>
-        </div>
-        <iframe src="https://travylway.setmore.com" title="Travylway Booking"
-          style="width:100%;height:78vh;border:0;display:block;background:#0b1224;border-top:1px solid #1f2a40;">
-        </iframe>
-      </div>
-    </section>
-
-    <section id="faq" style="padding:10px 0 40px;">
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Is pricing dynamic?</h3>
-          <p class="muted">Pricing is currently fixed with plans to move to dynamic pricing during this migration, Setmore will be handling the scheduling & payment layer.</p>
-        </div>
-        <div class="card">
-          <h3>How do I contact support?</h3>
-<p class="muted">
-  Chat with us anytime via
-  <a href="https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:600;">
-    Live Chat
-  </a>,
-  or leave a note in your Setmore booking.
-</p>
-
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="grid grid-2">
-        <div>
-          <div class="logo" aria-label="Travylway">
-            <div class="logo-mark" aria-hidden="true"><span></span></div>
-            <span>Travylway</span>
-          </div>
-          <p class="muted" style="margin-top:8px">Airport rides, the web way.</p>
-        </div>
-        <div style="text-align:right">
-          <a class="pill" href="https://travylway.setmore.com/" target="_blank" rel="noopener">Book a ride</a>
-        </div>
-      </div>
-      <div class="muted" style="margin-top:16px">© <span id="y"></span> Travylway. All rights reserved.</div>
-    </footer>
   </div>
 
-  <script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+  <!-- Header -->
+  <header>
+    <div class="wrap header-row">
+      <h1 style="font-size:1.5rem;color:var(--gold);margin-right:auto">Travylway</h1>
 
+      <nav>
+        <a href="/">Home</a>
+        <a href="/book/">Book</a>
+        <a href="/drivers/">Drivers</a>
+        <a href="/about/">About</a>
+      </nav>
+
+      <!-- New header CTA -->
+      <a class="btn btn-header" href="https://travylway.setmore.com" target="_blank" rel="noopener" aria-label="Book a ride">
+        Book a Ride
+      </a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="wrap site-grid">
+    <!-- Hero -->
+    <section class="block" style="grid-column:1/-1;text-align:center">
+      <h2 style="font-size:1.4rem;color:var(--gold)">Airport Transfers. Worldwide.</h2>
+      <p class="muted">Point-A to point-B. Transparent pricing. Secure rides. Expanding globally.</p>
+      <a class="btn" href="https://travylway.setmore.com" target="_blank" rel="noopener">Book a Ride</a>
+    </section>
+
+    <!-- Continents -->
+    <section class="block">
+      <header class="block-head"><h2>North America</h2><a class="block-link" href="/regions/north-america/">View all</a></header>
+      <div id="na-list" class="cards"></div>
+    </section>
+
+    <section class="block">
+      <header class="block-head"><h2>South America</h2><a class="block-link" href="/regions/south-america/">View all</a></header>
+      <div id="sa-list" class="cards"></div>
+    </section>
+
+    <section class="block">
+      <header class="block-head"><h2>Europe</h2><a class="block-link" href="/regions/europe/">View all</a></header>
+      <div id="eu-list" class="cards"></div>
+    </section>
+
+    <section class="block">
+      <header class="block-head"><h2>Africa</h2><a class="block-link" href="/regions/africa/">View all</a></header>
+      <div id="af-list" class="cards"></div>
+    </section>
+
+    <section class="block">
+      <header class="block-head"><h2>Asia</h2><a class="block-link" href="/regions/asia/">View all</a></header>
+      <div id="as-list" class="cards"></div>
+    </section>
+
+    <section class="block">
+      <header class="block-head"><h2>Australia &amp; Oceania</h2><a class="block-link" href="/regions/oceania/">View all</a></header>
+      <div id="oc-list" class="cards"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <small>© <span id="year"></span> Travylway · Powered by GitHub Pages · Global rides made simple</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Placeholder data (swap to live JSON/API when ready)
+    const regions = {
+      "na-list": [
+        {iata:"DEN",name:"Denver Intl",city:"Denver, USA",note:"Active hub",badge:"NA"},
+        {iata:"JFK",name:"JFK Intl",city:"New York, USA",note:"Crew pricing",badge:"NA"},
+        {iata:"YYZ",name:"Toronto Pearson",city:"Toronto, CAN",note:"Coming soon",badge:"NA"}
+      ],
+      "sa-list": [
+        {iata:"GRU",name:"São Paulo–Guarulhos",city:"São Paulo, BRA",note:"Pilot program",badge:"SA"},
+        {iata:"EZE",name:"Ministro Pistarini",city:"Buenos Aires, ARG",note:"In development",badge:"SA"}
+      ],
+      "eu-list": [
+        {iata:"LHR",name:"Heathrow",city:"London, UK",note:"Crew rides Q1",badge:"EU"},
+        {iata:"CDG",name:"Charles de Gaulle",city:"Paris, FR",note:"Scoping",badge:"EU"},
+        {iata:"AMS",name:"Schiphol",city:"Amsterdam, NL",note:"Interest list",badge:"EU"}
+      ],
+      "af-list": [
+        {iata:"JNB",name:"O. R. Tambo",city:"Johannesburg, ZA",note:"Exploring",badge:"AF"},
+        {iata:"CAI",name:"Cairo Intl",city:"Cairo, EG",note:"Exploring",badge:"AF"}
+      ],
+      "as-list": [
+        {iata:"HND",name:"Haneda",city:"Tokyo, JP",note:"Future hub",badge:"AS"},
+        {iata:"SIN",name:"Changi",city:"Singapore, SG",note:"Future hub",badge:"AS"}
+      ],
+      "oc-list": [
+        {iata:"SYD",name:"Sydney",city:"Sydney, AU",note:"Future hub",badge:"OC"},
+        {iata:"AKL",name:"Auckland",city:"Auckland, NZ",note:"Future hub",badge:"OC"}
+      ]
+    };
+
+    function render(id, data){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = data.map(a => `
+        <article class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3>${a.name}</h3><span class="badge">${a.badge}</span>
+          </div>
+          <p>${a.city}</p>
+          <small class="muted">${a.iata} · ${a.note}</small>
+        </article>
+      `).join('');
+    }
+
+    Object.entries(regions).forEach(([id, arr]) => render(id, arr));
+  </script>
 </body>
 </html>
-
-
-
