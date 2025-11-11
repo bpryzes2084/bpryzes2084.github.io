@@ -73,50 +73,6 @@
     .table th,.table td{border-bottom:1px solid var(--stroke);padding:10px 8px;text-align:left}
     .table th{color:var(--gold);border-bottom:1px solid var(--gold-600)}
 
-<!-- Support Chat (no floating widget, ~320px wide) -->
-<section class="block" id="support-chat" style="text-align:center;width:min(320px,90%);margin:0 auto;">
-  <header class="block-head" style="justify-content:center">
-    <h2>Support Chat</h2>
-  </header>
-  <p class="muted" style="margin:0 0 10px">Quick questions? Ping us here.</p>
-
-  <div style="display:flex;gap:8px;justify-content:center">
-    <button class="btn" type="button" id="open-chat">Open Chat</button>
-    <a class="btn-ghost" href="https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu" target="_blank" rel="noopener">
-      Open in New Tab
-    </a>
-  </div>
-
-  <small class="muted" id="chat-status" style="display:block;margin-top:10px">No widget. Opens in a new tab.</small>
-
-  <script>
-    // No Tawk embed. Just open the direct chat in a centered popup.
-    (function(){
-      const btn = document.getElementById('open-chat');
-      const CHAT_URL = 'https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu';
-
-      function openPopup(url){
-        const w = 420, h = 640;
-        const y = Math.max(0, (window.outerHeight - h) / 2 + (window.screenY || 0));
-        const x = Math.max(0, (window.outerWidth  - w) / 2 + (window.screenX || 0));
-        const opts = `popup=yes,noopener,noreferrer,width=${w},height=${h},left=${Math.round(x)},top=${Math.round(y)}`;
-        window.open(url, '_blank', opts);
-      }
-
-      btn?.addEventListener('click', () => openPopup(CHAT_URL));
-    })();
-  </script>
-</section>
-
-
-<section class="block" style="text-align:center;width:min(320px,90%);margin:0 auto;">
-  <header class="block-head" style="justify-content:center">
-    <h2>Support Chat</h2>
-  </header>
-  <p class="muted" style="margin:0 0 10px">This is a visibility test. If you can see this, layout is good.</p>
-</section>
-
-    
     /* Flight tracking */
     #flight-tracking .flight-embed{display:flex;justify-content:center}
     #flight-tracking .flight-embed iframe{width:100%;max-width:960px;min-height:360px;border:0;border-radius:12px}
@@ -179,6 +135,23 @@
         </div>
         <p class="tagline">Airport Rides Made Simple</p>
       </div>
+
+      <!-- Support Chat (no floating widget, ~1/3 width) -->
+      <section class="block" id="support-chat" style="text-align:center;width:min(320px,90%);margin:0 auto;">
+        <header class="block-head" style="justify-content:center">
+          <h2>Support Chat</h2>
+        </header>
+        <p class="muted" style="margin:0 0 10px">Quick questions? Ping us here.</p>
+
+        <div style="display:flex;gap:8px;justify-content:center">
+          <button class="btn" type="button" id="open-chat">Open Chat</button>
+          <a class="btn-ghost" href="https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu" target="_blank" rel="noopener">
+            Open in New Tab
+          </a>
+        </div>
+
+        <small class="muted" id="chat-status" style="display:block;margin-top:10px">No widget. Opens in a new tab.</small>
+      </section>
 
       <!-- Flight Tracking -->
       <section class="block" id="flight-tracking" style="text-align:center">
@@ -256,16 +229,6 @@
           </div>
         </form>
         <small class="muted" style="display:block;margin-top:8px">Price confirmed via text. DEN-only during rebuild.</small>
-      </section>
-
-      <!-- Flight Attendants -->
-      <section class="block" style="text-align:center">
-        <header class="block-head" style="justify-content:center"><h2>Domestic Flight Attendant Booking Portal</h2></header>
-        <p class="muted" style="margin:0 0 12px">Priority airport pickups for U.S.-based crew. DEN first — expanding to more airports.</p>
-        <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-          <a class="btn" href="/flight-attendants/" rel="noopener">View Portal</a>
-          <a class="btn-ghost" href="https://travylway.setmore.com" target="_blank" rel="noopener">Book Crew Ride</a>
-        </div>
       </section>
 
       <!-- Drivers Online -->
@@ -346,11 +309,29 @@
     <small>© <span id="year"></span> Travylway · Global rides made simple</small>
   </footer>
 
-  <!-- Lazy-load Google Maps when the booking block is in view. Replace YOUR_API_KEY. -->
+  <!-- Support Chat (no embed) logic -->
+  <script>
+    (function(){
+      const btn = document.getElementById('open-chat');
+      const statusEl = document.getElementById('chat-status');
+      const CHAT_URL = 'https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu';
+
+      function openPopup(url){
+        const w=420,h=640;
+        const y=Math.max(0,(window.outerHeight-h)/2+(window.screenY||0));
+        const x=Math.max(0,(window.outerWidth-w)/2+(window.screenX||0));
+        const opts=`popup=yes,noopener,noreferrer,width=${w},height=${h},left=${Math.round(x)},top=${Math.round(y)}`;
+        window.open(url,'_blank',opts);
+        if (statusEl) statusEl.textContent = 'Chat opened in a new window.';
+      }
+      btn?.addEventListener('click',()=>openPopup(CHAT_URL));
+    })();
+  </script>
+
+  <!-- Lazy-load Google Maps when crew-book is in view. Replace YOUR_API_KEY if used. -->
   <script>
     const yr = document.getElementById('year'); if(yr) yr.textContent = new Date().getFullYear();
 
-    // Lazy loader
     let mapsLoaded = false;
     const crewBlock = document.getElementById('crew-book');
     if ('IntersectionObserver' in window && crewBlock){
@@ -366,13 +347,6 @@
         }
       }, {rootMargin:"200px"});
       io.observe(crewBlock);
-    } else {
-      // Fallback: load immediately
-      const s = document.createElement('script');
-      s.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&loading=async";
-      s.async = true;
-      s.onload = initCrewForm;
-      document.head.appendChild(s);
     }
 
     function initCrewForm(){
@@ -380,12 +354,10 @@
       const API = '/api/trav/request';
       let pickupPlace=null, dropoffPlace=null, svc=null;
 
-      // default date/time
       const now=new Date();
       const d=$('#date'); if(d) d.value = now.toISOString().slice(0,10);
       const t=$('#time'); if(t) t.value = new Date(now.getTime()+60*60*1000).toTimeString().slice(0,5);
 
-      // places
       const opt={fields:['geometry','formatted_address','place_id','name'],types:['geocode']};
       const ap1 = new google.maps.places.Autocomplete($('#pickup'), opt);
       const ap2 = new google.maps.places.Autocomplete($('#dropoff'), opt);
@@ -422,7 +394,6 @@
           miles_hint: $('#est')?.textContent||''
         };
 
-        // DEN-only guard (fixes tiny typo)
         const d = (payload.dropoff||'').toLowerCase();
         if (!(d.includes('denver international') || d.includes('8500 pe') || d.includes('(den'))){
           $('#err').textContent='Airport-only rides (DEN).'; return;
@@ -443,5 +414,3 @@
   </script>
 </body>
 </html>
-
-
