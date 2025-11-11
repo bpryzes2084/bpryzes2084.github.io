@@ -73,6 +73,47 @@
     .table th,.table td{border-bottom:1px solid var(--stroke);padding:10px 8px;text-align:left}
     .table th{color:var(--gold);border-bottom:1px solid var(--gold-600)}
 
+<!-- Support Chat (no floating widget, ~320px wide) -->
+<section class="block" id="support-chat" style="text-align:center;width:min(320px,90%);margin:0 auto;">
+  <header class="block-head" style="justify-content:center">
+    <h2>Support Chat</h2>
+  </header>
+  <p class="muted" style="margin:0 0 10px">Quick questions? Ping us here.</p>
+
+  <div style="display:flex;gap:8px;justify-content:center">
+    <button class="btn" type="button" id="open-chat">Open Chat</button>
+    <a class="btn-ghost" href="https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu" target="_blank" rel="noopener">
+      Open in New Tab
+    </a>
+  </div>
+
+  <small class="muted" id="chat-status" style="display:block;margin-top:10px">No widget. Opens in a new tab.</small>
+
+  <script>
+    // No Tawk embed. Just open the direct chat in a centered popup.
+    (function(){
+      const btn = document.getElementById('open-chat');
+      const CHAT_URL = 'https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu';
+
+      function openPopup(url){
+        const w = 420, h = 640;
+        const y = Math.max(0, (window.outerHeight - h) / 2 + (window.screenY || 0));
+        const x = Math.max(0, (window.outerWidth  - w) / 2 + (window.screenX || 0));
+        const opts = `popup=yes,noopener,noreferrer,width=${w},height=${h},left=${Math.round(x)},top=${Math.round(y)}`;
+        window.open(url, '_blank', opts);
+      }
+
+      btn?.addEventListener('click', () => openPopup(CHAT_URL));
+    })();
+  </script>
+</section>
+
+
+
+
+
+
+    
     /* Flight tracking */
     #flight-tracking .flight-embed{display:flex;justify-content:center}
     #flight-tracking .flight-embed iframe{width:100%;max-width:960px;min-height:360px;border:0;border-radius:12px}
