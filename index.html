@@ -1,336 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Travylway — Airport Rides Made Simple</title>
-  <meta name="theme-color" content="#000000" />
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23000'/%3E%3Ctext x='50%' y='56%' font-size='38' text-anchor='middle' fill='%23D4AF37' font-family='Segoe UI, Roboto, Arial, sans-serif'%3ET%3C/text%3E%3C/svg%3E">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoppizzy - Your Ultimate Shopping Destination</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root{
-      --bg:#000; --fg:#fff; --muted:#A9B0BA;
-      --card:#0b0b0b; --stroke:#1e1e1e;
-      --gold:#D4AF37; --gold-600:#B08D2B; --gold-300:#E6C56E;
-      --accent:var(--gold);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-    h1,h2,h3{margin:0}
-    img{max-width:100%;height:auto}
-    .wrap{max-width:1100px;margin:0 auto;padding:16px}
-    .muted{color:var(--muted)}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    /* Top announcement */
-    .topbar{position:sticky;top:0;z-index:1000;width:100%;background:linear-gradient(180deg,#0a0a0a,#000);border-bottom:1px solid var(--gold-600);color:var(--fg)}
-    .topbar .inner{display:flex;gap:12px;align-items:center;justify-content:space-between}
-    .topbar .msg{display:flex;gap:10px;align-items:center;font-weight:600}
-    .topbar .dot{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+        header {
+            background: #4B9CD3;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    /* Buttons */
-    .btn,.btn-ghost{display:inline-block;padding:8px 14px;border-radius:12px;font-weight:700;text-decoration:none;line-height:1}
-    .btn{background:linear-gradient(180deg,var(--gold-300),var(--gold));color:#1a1a1a;border:1px solid var(--gold-300)}
-    .btn:hover{background:linear-gradient(180deg,var(--gold),var(--gold-600))}
-    .btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--gold)}
-    .btn-ghost:hover{background:rgba(212,175,55,.08)}
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* Header / nav */
-    header{background:linear-gradient(180deg,#050505,#000);border-bottom:1px solid var(--stroke)}
-    .header-row{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
-    nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-    nav a{color:var(--muted);text-decoration:none}
-    nav a:hover{color:var(--gold)}
-    .btn-header{padding:8px 12px}
-    nav .nav-icon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;color:var(--gold);border:1px solid var(--gold);text-decoration:none}
-    nav .nav-icon:hover{background:rgba(212,175,55,.08)}
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
-    /* Blocks */
-    .block{background:var(--card);border:1px solid var(--stroke);border-radius:16px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    .block-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-    .block-head h2{font-size:1.1rem;position:relative;padding-bottom:6px}
-    .block-head h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:2px;background:var(--gold)}
-    .block-link{color:var(--gold);text-decoration:none;font-weight:600}
-    .block-link:hover{text-decoration:underline}
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    /* Main column */
-    .main-column{display:grid;gap:20px;grid-template-columns:1fr}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
 
-    /* Brand + tagline */
-    .brand-word{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;width:100%;margin:0 auto 8px;text-align:center;font-weight:900;font-size:2rem;letter-spacing:.06em}
-    .brand-word .chip{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#000;padding:4px 8px;border-radius:8px;box-shadow:0 0 10px rgba(212,175,55,0.3)}
-    .tagline{color:#fff;text-align:center;font-size:1.2rem;font-weight:600;margin:4px 0 16px}
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
 
-    /* Lists & small text */
-    .list-clean{list-style:none;margin:0;padding:0}
-    .list-clean li{margin:0 0 8px}
-    .list-clean a{display:block;padding:10px 12px;border:1px solid var(--stroke);border-radius:10px;text-decoration:none;color:var(--fg);background:var(--card)}
-    .list-clean a:hover{border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,175,55,.15) inset}
-    .small-muted{color:var(--muted);font-size:.9rem}
+        .hero {
+            background: linear-gradient(135deg, #4B9CD3 0%, #7BB8E7 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
 
-    /* Tables */
-    .table{width:100%;border-collapse:collapse}
-    .table th,.table td{border-bottom:1px solid var(--stroke);padding:10px 8px;text-align:left}
-    .table th{color:var(--gold);border-bottom:1px solid var(--gold-600)}
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
 
-  
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
 
-    /* Footer */
-    footer{margin-top:40px;padding:16px;text-align:center;color:var(--muted);border-top:1px solid var(--stroke)}
+        .cta-button {
+            background: white;
+            color: #4B9CD3;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
 
-    /* A11y */
-    :focus-visible{outline:2px solid var(--gold-300);outline-offset:2px;border-radius:8px}
-    ::selection{background:rgba(212,175,55,.35);color:#000}
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
 
-    .coming-soon{color:var(--muted);text-align:center;font-size:.95rem;margin-top:8px}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-    input,button{font:inherit}
-  </style>
+        .features {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(75, 156, 211, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(75, 156, 211, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #4B9CD3;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .products {
+            background: #f8fbff;
+            padding: 4rem 2rem;
+        }
+
+        .products h2 {
+            text-align: center;
+            color: #4B9CD3;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #4B9CD3 0%, #7BB8E7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            color: #4B9CD3;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4B9CD3;
+            margin: 1rem 0;
+        }
+
+        .merchant-badge {
+            display: inline-block;
+            background: #e8f4f8;
+            color: #4B9CD3;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .shop-button {
+            width: 100%;
+            background: #4B9CD3;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .shop-button:hover {
+            background: #3a8bc4;
+        }
+
+        footer {
+            background: #4B9CD3;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Announcement -->
-  <div class="topbar" role="region" aria-label="Site announcement">
-    <div class="wrap inner">
-      <div class="msg" role="status" aria-live="polite">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <div style="font-size:0.95rem"><span style="color:var(--gold)">Creating the new Travylway.com</span> — Rebuild is in progress.</div>
-          <div class="muted" style="font-size:0.9rem">Site is live while under construction.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header role="banner">
-    <div class="wrap header-row">
-      <h1 style="font-size:1.5rem;color:var(--gold);margin-right:auto">Travylway</h1>
-      <nav aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="/shopping/">Shopping</a>
-        <a href="/select/" class="nav-icon" aria-label="Select Items">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/>
-          </svg>
-        </a>
-      </nav>
-      <a class="btn btn-header" href="https://travylway.setmore.com" target="_blank" rel="noopener">Book a Ride</a>
-    </div>
-  </header>
-
-  <!-- Main -->
-  <main class="wrap" role="main">
-    <div class="main-column">
-      <!-- Brand + tagline -->
-      <div>
-        <div class="brand-word" aria-label="Travylway">
-          <span class="chip">T</span><span class="chip">r</span><span class="chip">a</span>
-          <span class="chip">v</span><span class="chip">y</span><span class="chip">l</span>
-          <span class="chip">w</span><span class="chip">a</span><span class="chip">y</span>
-        </div>
-        <p class="tagline">Airport Rides Made Simple</p>
-      </div>
-
-              
-     
-  <!-- Denver Metro Area -->
-<section class="block" id="denver-area">
-  <header class="block-head" style="justify-content:space-between">
-    <h2>Denver Metro Area</h2>
-  </header>
-
-  <div class="metro-grid">
-    <!-- E-470 Corridor -->
-    <article class="metro-card" id="box-e470">
-      <h3>E-470 Corridor</h3>
-      <p class="muted">For residents that reside along e-470: Aurora, Brighton, Broomfield, Centennial, Commerce City, Lone Tree, Parker</p>
-      <div class="actions">
-        <a class="btn" href="/denver/e470/" aria-label="View E-470 Corridor portal">View Portal</a>
-        <a class="btn-ghost" href="https://travylway.setmore.com" target="_blank" rel="noopener" aria-label="Book E-470 Corridor ride">Book</a>
-      </div>
-    </article>
-
-    <!-- Denver Metro -->
-    <article class="metro-card" id="box-denver-metro">
-      <h3>Denver Metro</h3>
-      <p class="muted">Downtown, Arvada, Capitol Hill, Centennial, Cherry Creek, Denver Tech Center, Englewood, Highlands Ranch, Lakewood, Littleton, Wheat Ridge</p>
-      <div class="actions">
-        <a class="btn" href="/denver/metro/" aria-label="View Denver Metro portal">View Portal</a>
-        <a class="btn-ghost" href="https://travylway.setmore.com" target="_blank" rel="noopener" aria-label="Book Denver Metro ride">Book</a>
-      </div>
-    </article>
-
-    <!-- Flight Attendants - Denver -->
-    <article class="metro-card" id="box-fa-denver">
-      <h3>Flight Attendants — Denver</h3>
-      <p class="muted">Crew-Only pickups to/from Denver International Airport. </p>
-      <div class="actions">
-        <a class="btn" href="/flight-attendants/den/" aria-label="View Denver flight attendant portal">View Portal</a>
-        <a class="btn-ghost" href="https://travylway.setmore.com/services/af6905d2-ef93-465d-bb59-1336ae0a0b2f" target="_blank" rel="noopener" aria-label="Book crew ride">Book Crew Ride</a>
-      </div>
-    </article>
-
-
-    
-<!-- Gaylord Rockies Resort & Convention Center -->
-<article class="metro-card" id="box-gaylord">
-  <h3>Gaylord Rockies Resort &amp; Convention Center</h3>
-  <p class="muted">
-    Dedicated runs between Denver International Airport and Gaylord Rockies.
-  </p>
-  <div class="actions">
-    <a
-      class="btn"
-      href="https://travylway.setmore.com/services/bdc7b6fd-2749-48f3-a351-f43771c180fb"
-      target="_blank"
-      rel="noopener"
-      aria-label="Book Gaylord Rockies ride"
-    >Book</a>
-  </div>
-</article>
-
-
-      
-       
-             <!-- Gaylord Rockies Resort & Convention Center -->
-          <!-- (your existing Gaylord article stays above this line) -->
-        </div> <!-- end .metro-grid -->
-      </section> <!-- end #denver-area -->
-
-      <!-- Policies -->
-      <section class="block" id="policies">
-        <header class="block-head" style="justify-content:space-between">
-          <h2>Policies</h2>
-        </header>
-
-        <p class="muted" style="margin:0 0 10px">
-          Policies for Travylway Passengers, Drivers, & Refunds.
-        </p>
-
-        <nav class="policy-links" aria-label="Travylway policies">
-          <a href="/policies/privacy.html">Privacy Policy</a>
-          <a href="/policies/terms.html">Terms of Service</a>
-          <a href="/policies/cancellation.html">Cancellation Policy</a>
-          <a href="/policies/refunds.html">Refund &amp; Credit Policy</a>
-          <a href="/policies/airport-fees.html">Airport &amp; Surcharge Fees</a>
-          <a href="/policies/driver-standards.html">Driver Standards</a>
+    <header>
+        <nav>
+            <div class="logo">🛍️ Shoppizzy</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#deals">Deals</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
+    </header>
 
-        <small class="muted" style="display:block;text-align:center;margin-top:8px">
-          These pages will update as Travylway expands beyond Denver.
-        </small>
-      </section>
+    <section class="hero">
+        <h1>Welcome to Shoppizzy</h1>
+        <p>Compare Prices & Find the Best Deals from Top Retailers</p>
+        <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">Browse Products</button>
+    </section>
 
-    </div> <!-- end .main-column -->
-  </main>
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>Compare Prices</h3>
+            <p>Browse thousands of products from multiple retailers and find the best deals in one place.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏪</div>
+            <h3>Trusted Merchants</h3>
+            <p>Shop with confidence from verified retailers and established online stores.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Latest Deals</h3>
+            <p>Get access to the newest products and promotions updated in real-time.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💡</div>
+            <h3>Smart Shopping</h3>
+            <p>Make informed decisions with detailed product information and reviews.</p>
+        </div>
+    </section>
 
-  <footer role="contentinfo">
-    <small>© <span id="year"></span> Travylway · Global rides made simple</small>
-  </footer>
+    <section class="products" id="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card" onclick="window.open('#', '_blank')">
+                <div class="product-image">👕</div>
+                <div class="product-info">
+                    <span class="merchant-badge">Amazon</span>
+                    <h3>Premium T-Shirt</h3>
+                    <p>Comfortable cotton blend perfect for everyday wear</p>
+                    <div class="price">$29.99</div>
+                    <button class="shop-button">
+                        View on Merchant Site
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" onclick="window.open('#', '_blank')">
+                <div class="product-image">📱</div>
+                <div class="product-info">
+                    <span class="merchant-badge">Best Buy</span>
+                    <h3>Smart Phone Case</h3>
+                    <p>Durable protection with stylish design</p>
+                    <div class="price">$19.99</div>
+                    <button class="shop-button">
+                        View on Merchant Site
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" onclick="window.open('#', '_blank')">
+                <div class="product-image">⌚</div>
+                <div class="product-info">
+                    <span class="merchant-badge">Target</span>
+                    <h3>Sports Watch</h3>
+                    <p>Track your fitness goals in style</p>
+                    <div class="price">$89.99</div>
+                    <button class="shop-button">
+                        View on Merchant Site
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+            <div class="product-card" onclick="window.open('#', '_blank')">
+                <div class="product-image">🎧</div>
+                <div class="product-info">
+                    <span class="merchant-badge">Walmart</span>
+                    <h3>Wireless Headphones</h3>
+                    <p>Crystal clear sound with noise cancellation</p>
+                    <div class="price">$149.99</div>
+                    <button class="shop-button">
+                        View on Merchant Site
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Support Chat (no embed) logic -->
-  <script>
-    (function(){
-      const btn = document.getElementById('open-chat');
-      const statusEl = document.getElementById('chat-status');
-      const CHAT_URL = 'https://tawk.to/chat/6901a27ca00437194fc22c92/1j8n65dmu';
+    <footer>
+        <p>&copy; 2025 Shoppizzy.com - All Rights Reserved</p>
+        <p class="footer-note">Shoppizzy is a product comparison and affiliate marketing site. When you click on product links and make a purchase, we may earn a commission at no additional cost to you.</p>
+    </footer>
 
-      function openPopup(url){
-        const w=420,h=640;
-        const y=Math.max(0,(window.outerHeight-h)/2+(window.screenY||0));
-        const x=Math.max(0,(window.outerWidth-w)/2+(window.screenX||0));
-        const opts=`popup=yes,noopener,noreferrer,width=${w},height=${h},left=${Math.round(x)},top=${Math.round(y)}`;
-        window.open(url,'_blank',opts);
-        if (statusEl) statusEl.textContent = 'Chat opened in a new window.';
-      }
-      btn?.addEventListener('click',()=>openPopup(CHAT_URL));
-    })();
-  </script>
-
-  <!-- Lazy-load Google Maps when crew-book is in view. Replace YOUR_API_KEY if used. -->
-  <script>
-    const yr = document.getElementById('year'); if(yr) yr.textContent = new Date().getFullYear();
-
-    let mapsLoaded = false;
-    const crewBlock = document.getElementById('crew-book');
-    if ('IntersectionObserver' in window && crewBlock){
-      const io = new IntersectionObserver((entries)=>{
-        if (entries.some(e=>e.isIntersecting) && !mapsLoaded){
-          mapsLoaded = true;
-          const s = document.createElement('script');
-          s.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&loading=async";
-          s.async = true;
-          s.onload = initCrewForm;
-          document.head.appendChild(s);
-          io.disconnect();
-        }
-      }, {rootMargin:"200px"});
-      io.observe(crewBlock);
-    }
-
-    function initCrewForm(){
-      const $ = sel => document.querySelector(sel);
-      const API = '/api/trav/request';
-      let pickupPlace=null, dropoffPlace=null, svc=null;
-
-      const now=new Date();
-      const d=$('#date'); if(d) d.value = now.toISOString().slice(0,10);
-      const t=$('#time'); if(t) t.value = new Date(now.getTime()+60*60*1000).toTimeString().slice(0,5);
-
-      const opt={fields:['geometry','formatted_address','place_id','name'],types:['geocode']};
-      const ap1 = new google.maps.places.Autocomplete($('#pickup'), opt);
-      const ap2 = new google.maps.places.Autocomplete($('#dropoff'), opt);
-      ap1.addListener('place_changed',()=> pickupPlace = ap1.getPlace());
-      ap2.addListener('place_changed',()=> dropoffPlace = ap2.getPlace());
-      svc = new google.maps.DistanceMatrixService();
-
-      $('#calc')?.addEventListener('click', async ()=>{
-        const err=$('#err'), est=$('#est'); err.textContent=''; est.textContent='Calculating…';
-        try{
-          if(!pickupPlace?.geometry || !dropoffPlace?.geometry){ est.textContent=''; err.textContent='Enter pickup & dropoff first.'; return; }
-          const r = await new Promise((res,rej)=>svc.getDistanceMatrix({
-            origins:[pickupPlace.geometry.location], destinations:[dropoffPlace.geometry.location],
-            travelMode:google.maps.TravelMode.DRIVING
-          }, (out,status)=>status==='OK'?res(out):rej(status)));
-          const row=r.rows?.[0]?.elements?.[0];
-          if(!row || row.status!=='OK'){ est.textContent=''; err.textContent='No route found.'; return; }
-          const miles=row.distance.value/1609.344, mins=row.duration.value/60;
-          est.textContent=`~${miles.toFixed(1)} mi • ~${Math.round(mins)} min`;
-        }catch{ est.textContent=''; $('#err').textContent='Distance error.'; }
-      });
-
-      $('#send')?.addEventListener('click', async ()=>{
-        $('#ok').textContent=''; $('#err').textContent='';
-        const payload={
-          access: $('#access')?.value?.trim()||'',
-          pickup: $('#pickup')?.value?.trim()||'',
-          dropoff: $('#dropoff')?.value?.trim()||'',
-          date: $('#date')?.value||'',
-          time: $('#time')?.value||'',
-          airline: $('#airline')?.value?.trim()||'',
-          flight: $('#flight')?.value?.trim()||'',
-          notes: $('#notes')?.value?.trim()||'',
-          miles_hint: $('#est')?.textContent||''
-        };
-
-        const d = (payload.dropoff||'').toLowerCase();
-        if (!(d.includes('denver international') || d.includes('8500 pe') || d.includes('(den'))){
-          $('#err').textContent='Airport-only rides (DEN).'; return;
-        }
-
-        if(!payload.access){ $('#err').textContent='Crew code required.'; return; }
-        if(!payload.pickup || !payload.dropoff){ $('#err').textContent='Add addresses.'; return; }
-
-        try{
-          const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-          const data=await res.json();
-          if(!res.ok){ $('#err').textContent=data?.error||'Request failed.'; return; }
-          $('#ok').textContent='Request received. We’ll confirm shortly.';
-          document.getElementById('trav-form')?.reset(); document.getElementById('est').textContent='';
-        }catch{ $('#err').textContent='Network error.'; }
-      });
-    }
-  </script>
+    <script>
+        // Product cards will link to merchant sites via Datafeedr affiliate links
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 10px 30px rgba(75, 156, 211, 0.3)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
 </body>
 </html>
    
