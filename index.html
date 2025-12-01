@@ -1,53 +1,26 @@
-# Creating an HTML file that centers the provided image.
-# Steps:
-# 1. Copy the original image to a simpler filename in /mnt/data for easier referencing in HTML.
-# 2. Write an HTML file that centers the image both vertically and horizontally and is responsive.
-# 3. Save the HTML file to /mnt/data and leave both files for download.
-
-import shutil, os, html, pathlib
-src = "/mnt/data/ChatGPT Image Dec 1, 2025, 01_39_52 PM.png"
-dest_img = "/mnt/data/travylway-image.png"
-html_path = "/mnt/data/travylway_centered.html"
-
-# Copy the image to a safe filename if it exists
-if os.path.exists(src):
-    shutil.copyfile(src, dest_img)
-    copied = True
-else:
-    copied = False
-
-html_content = f"""<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Centered Travylway Image</title>
   <style>
-    :root{{--bg:#f6efe4;--maxw:1100px;}}
-    html,body{{height:100%;margin:0;}}
-    body{{display:flex;align-items:center;justify-content:center;background:var(--bg);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; padding:20px;}}
-    .wrap{{max-width:var(--maxw);width:100%;text-align:center;}}
-    .image{{display:block;margin:0 auto;max-width:100%;height:auto;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,0.12);}}
-    /* optional caption styling (comment out if you don't want text) */
-    .caption{{margin-top:18px;font-size:20px;color:#0f1720;font-weight:600;}}
-    @media (max-width:600px){{ .caption{{font-size:16px}} }}
+    html,body{height:100%;margin:0;}
+    body{display:flex;align-items:center;justify-content:center;background:#f6efe4;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; padding:20px;}
+    .wrap{max-width:1100px;width:100%;text-align:center;}
+    .image{display:block;margin:0 auto;max-width:100%;height:auto;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,0.12);}
+    .caption{margin-top:18px;font-size:20px;color:#0f1720;font-weight:600;}
+    @media (max-width:600px){ .caption{font-size:16px} }
   </style>
 </head>
 <body>
   <div class="wrap">
     <img src="travylway-image.png" alt="Globe with airplanes orbiting and Travylway.com text" class="image">
-    <!-- If you want a caption below the image, uncomment the next line -->
     <!-- <div class="caption">Travylway.com</div> -->
   </div>
 </body>
 </html>
-"""
 
-# Write HTML file
-with open(html_path, "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-html_path, dest_img, copied
 
 
    
