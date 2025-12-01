@@ -1,25 +1,35 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Travylway - Centered Image</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Travylway — Airport Rides</title>
+  <meta name="description" content="Travylway — scheduled airport transportation for flight crews and travelers.">
   <style>
+    :root{--bg:#ffffff;--maxw:1200px;}
     html,body{height:100%;margin:0;}
-    body{display:flex;align-items:center;justify-content:center;background:#f6efe4;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;padding:20px;}
-    .wrap{max-width:1100px;width:100%;text-align:center;}
-    img{display:block;margin:0 auto;max-width:100%;height:auto;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,0.12);}
-    .caption{margin-top:18px;font-size:20px;color:#0f1720;font-weight:600;}
-    @media (max-width:600px){ .caption{font-size:16px} }
+    body{display:flex;align-items:center;justify-content:center;background:var(--bg);font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding:28px;}
+    .container{max-width:var(--maxw);width:100%;text-align:center;}
+    .logo{font-weight:700;letter-spacing:0.6px;margin-bottom:18px;font-size:20px;color:#0b1220;}
+    .hero{border-radius:8px;overflow:hidden;box-shadow:0 18px 40px rgba(11,17,32,0.12);display:inline-block;}
+    .hero img{display:block;width:100%;height:auto;max-width:1000px;}
+    .caption{margin-top:14px;font-size:16px;color:#0b1220;}
+    .small{font-size:13px;color:#5b6270;margin-top:8px;}
+    @media (max-width:700px){
+      .logo{font-size:18px;}
+      .caption{font-size:15px;}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- Make sure travylway-image.png is in the same folder as this HTML file -->
-    <img src="travylway-image.png" alt="Globe with airplanes orbiting and Travylway.com text">
-    <!-- Optional caption -->
-    <!-- <div class="caption">Travylway.com</div> -->
+  <div class="container">
+    <div class="logo">Travylway</div>
+    <div class="hero">
+      <!-- Make sure travylway-image.png is uploaded to the same folder as this index.html -->
+      <img src="travylway-image.png" alt="Globe with airplanes circling it — Travylway.com">
+    </div>
+    <div class="caption">Scheduled airport rides — reliable, crew-friendly.</div>
+    <div class="small">Tip: Upload this <strong>index.html</strong> and <strong>travylway-image.png</strong> to the same folder in your GitHub repo (root or <code>/docs</code>), then enable GitHub Pages for the branch to publish the page.</div>
   </div>
 </body>
 </html>
