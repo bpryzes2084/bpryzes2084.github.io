@@ -4,35 +4,56 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Travylway — Airport Rides</title>
-  <meta name="description" content="Travylway — scheduled airport transportation for flight crews and travelers.">
+  <meta name="description" content="Travylway — scheduled airport transportation for flight crews and travelers." />
   <style>
-    :root{--bg:#ffffff;--maxw:1200px;}
-    html,body{height:100%;margin:0;}
-    body{display:flex;align-items:center;justify-content:center;background:var(--bg);font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding:28px;}
-    .container{max-width:var(--maxw);width:100%;text-align:center;}
-    .logo{font-weight:700;letter-spacing:0.6px;margin-bottom:18px;font-size:20px;color:#0b1220;}
-    .hero{border-radius:8px;overflow:hidden;box-shadow:0 18px 40px rgba(11,17,32,0.12);display:inline-block;}
-    .hero img{display:block;width:100%;height:auto;max-width:1000px;}
-    .caption{margin-top:14px;font-size:16px;color:#0b1220;}
-    .small{font-size:13px;color:#5b6270;margin-top:8px;}
-    @media (max-width:700px){
-      .logo{font-size:18px;}
-      .caption{font-size:15px;}
+    /* Page layout */
+    :root{
+      --bg: #f6f6f8;
+      --card: #fff;
+      --accent: #0b6cf0;
+      --text: #0b1220;
+      --muted: #55606c;
+      --maxw: 1100px;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:var(--text);}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;}
+    .card{width:100%;max-width:var(--maxw);text-align:center;background:transparent;border-radius:12px;padding:18px;}
+    h1{margin:0 0 14px;font-size:28px;letter-spacing:0.4px;}
+    p.lead{margin:8px 0 22px;color:var(--muted);font-size:15px;}
+    /* SVG hero */
+    .hero{display:inline-block;background:var(--card);padding:22px;border-radius:14px;box-shadow:0 18px 40px rgba(11,17,32,0.08);}
+    svg{display:block;max-width:100%;height:auto;}
+    /* Simple orbit animation */
+    .orbit { transform-origin: 50% 50%; animation: spin 18s linear infinite; }
+    .orbit.reverse { animation-direction: reverse; animation-duration: 22s; }
+    @keyframes spin { from{ transform: rotate(0deg);} to{ transform: rotate(360deg); } }
+    /* Plane specifics */
+    .plane { transform-origin: center; }
+    .plane.fly { animation: plane-bob 2.4s ease-in-out infinite; }
+    @keyframes plane-bob {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(3deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    /* Footer text */
+    .domain { margin-top:16px;font-weight:700;color:var(--text); }
+    .sub { margin-top:6px;color:var(--muted);font-size:13px; }
+    /* Responsive sizing */
+    @media (max-width:520px){
+      h1{font-size:20px;}
+      .hero{padding:14px;}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">Travylway</div>
-    <div class="hero">
-      <!-- Make sure travylway-image.png is uploaded to the same folder as this index.html -->
-      <img src="travylway-image.png" alt="Globe with airplanes circling it — Travylway.com">
-    </div>
-    <div class="caption">Scheduled airport rides — reliable, crew-friendly.</div>
-    <div class="small">Tip: Upload this <strong>index.html</strong> and <strong>travylway-image.png</strong> to the same folder in your GitHub repo (root or <code>/docs</code>), then enable GitHub Pages for the branch to publish the page.</div>
-  </div>
-</body>
-</html>
+  <main class="wrap" role="main">
+    <div class="card" aria-labelledby="site-title">
+      <h1 id="site-title">Travylway</h1>
+      <p class="lead">Scheduled airport rides — reliable, crew-friendly.</p>
+
+      <!-- Inline SVG globe + orbiting airplanes. No external assets. -->
+      <div class="hero" ro
+
 
 
 
